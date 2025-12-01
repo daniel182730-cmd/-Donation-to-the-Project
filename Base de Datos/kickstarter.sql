@@ -71,5 +71,5 @@ alter table comentarios add constraint fk_comentario_usuario foreign key (ID_Use
 alter table comentarios add constraint fk_comentario_proyecto foreign key (ID_Proyecto) references Proyectos(ID_Proyecto);
 
 /*==================================================
-Restricciones  provando actu
+Restricciones
 ===================================================*/
