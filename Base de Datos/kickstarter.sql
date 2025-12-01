@@ -73,3 +73,5 @@ alter table comentarios add constraint fk_comentario_proyecto foreign key (ID_Pr
 /*==================================================
 Restricciones  provando actu
 ===================================================*/
+
+/*Samuel el papi chulo*/ 
