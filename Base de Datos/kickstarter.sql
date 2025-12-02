@@ -1,5 +1,5 @@
 use kickstarter;
-
+ 
 /*==================================================
 TABLAS
 ===================================================*/
@@ -54,6 +54,14 @@ alter table Proyectos add constraint pk_proyectos primary key (ID_Proyecto);
 alter table Donaciones add constraint pk_donaciones primary key (ID_Donaciones);
 alter table categorias add constraint pk_categorias primary key (ID_Categorias);
 alter table comentarios add constraint pk_comentarios primary key (ID_Comentarios);
+/*==================================================
+AUTO_INCREMENT
+===================================================*/
+alter table Usuario modify ID_User int not null auto_increment;
+alter table Proyectos modify ID_Proyecto int not null auto_increment;
+alter table Donaciones modify ID_Donaciones int not null auto_increment;
+alter table categorias modify ID_Categorias int not null auto_increment;
+alter table comentarios modify ID_Comentarios int not null auto_increment;
 
 /*==================================================
 RELACIONES 
@@ -111,5 +119,7 @@ ADD CONSTRAINT chk_categoria_nombre CHECK (CHAR_LENGTH(nombre) >= 3);
 
 ALTER TABLE proyectos
 ADD CONSTRAINT chk_proyecto_titulo CHECK (CHAR_LENGTH(titulo) >= 3);
+
+
 
 
