@@ -73,3 +73,43 @@ alter table comentarios add constraint fk_comentario_proyecto foreign key (ID_Pr
 /*==================================================
 Restricciones
 ===================================================*/
+
+-- not null
+ALTER TABLE usuario
+MODIFY nombre VARCHAR(50) NOT NULL,
+MODIFY email VARCHAR(100) NOT NULL,
+MODIFY contraseña VARCHAR(255) NOT NULL;
+
+ALTER TABLE categorias
+MODIFY nombre VARCHAR(50) NOT NULL;
+
+ALTER TABLE proyectos
+MODIFY titulo VARCHAR(100) NOT NULL,
+MODIFY descripcion TEXT NOT NULL,
+MODIFY estatus char NOT NULL;
+
+ALTER TABLE donaciones
+MODIFY Fecha_Donaciones DATETIME NOT NULL,
+MODIFY estatus char NOT NULL,
+MODIFY Monto DECIMAL(10,2) NOT NULL;
+
+ALTER TABLE comentarios
+MODIFY comentario VARCHAR(200) NOT NULL,
+MODIFY fecha_comentario DATETIME NOT NULL;
+
+-- unique
+ALTER TABLE usuario
+ADD CONSTRAINT uq_usuario_email UNIQUE (email);
+
+-- check
+ALTER TABLE usuario
+ADD CONSTRAINT chk_usuario_nombre CHECK (CHAR_LENGTH(nombre) >= 3),
+ADD CONSTRAINT chk_usuario_pass CHECK (CHAR_LENGTH(contraseña) >= 3);
+
+ALTER TABLE categorias
+ADD CONSTRAINT chk_categoria_nombre CHECK (CHAR_LENGTH(nombre) >= 3);
+
+ALTER TABLE proyectos
+ADD CONSTRAINT chk_proyecto_titulo CHECK (CHAR_LENGTH(titulo) >= 3);
+
+
