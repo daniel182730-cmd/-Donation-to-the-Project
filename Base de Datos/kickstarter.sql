@@ -1,3 +1,4 @@
+
 create database kickstarter;
 use kickstarter;
  
@@ -21,7 +22,7 @@ ID_Categoria int,
 titulo char(50),
 descripcion char(250),
 imagenes varchar (200),
-estatus char(100),
+estatus varchar(100),
 cantidad_donaciones int,
 monto_total decimal(10,2),
 cantidad_comentarios int
@@ -32,7 +33,7 @@ ID_Donaciones int,
 ID_User int,
 ID_Proyecto int,
 Fecha_Donaciones datetime,
-estatus char(40),
+estatus varchar(40),
 Monto decimal(10,2)
 );
 
@@ -123,6 +124,16 @@ ADD CONSTRAINT chk_categoria_nombre CHECK (CHAR_LENGTH(nombre) >= 3);
 
 ALTER TABLE proyectos
 ADD CONSTRAINT chk_proyecto_titulo CHECK (CHAR_LENGTH(titulo) >= 3);
+
+-- default
+alter table proyectos
+alter column monto_total set default 0;
+
+alter table proyectos
+alter column cantidad_donaciones set default 0;
+
+alter table proyectos
+alter column cantidad_comentarios set default 0;
 
 /*==================================================
 PROCEDIMIENTOS ALMACENADOS
@@ -430,5 +441,115 @@ begin
 end $$
 DELIMITER $$ 
 
+/*==================================================
+Triggers
+===================================================*/
+-- Proyectos
 
+/*ingresa monto y cantidad despues de insercion*/
+DELIMITER $$
 
+CREATE TRIGGER trg_after_insert_donaciones
+AFTER INSERT ON Donaciones
+FOR EACH ROW
+BEGIN
+    
+    UPDATE Proyectos
+    SET 
+        monto_total = monto_total + NEW.Monto,
+        cantidad_donaciones = cantidad_donaciones + 1
+    WHERE ID_Proyecto = NEW.ID_Proyecto;
+
+END$$
+
+DELIMITER ;
+
+/*elimina monto y cantidad despues de eliminacion*/
+DELIMITER $$
+
+CREATE TRIGGER trg_donaciones_delete
+AFTER DELETE ON Donaciones
+FOR EACH ROW
+BEGIN
+    
+    UPDATE Proyectos
+    SET 
+        monto_total = monto_total - OLD.Monto,
+        cantidad_donaciones = cantidad_donaciones - 1
+    WHERE ID_Proyecto = OLD.ID_Proyecto;
+
+END$$
+
+DELIMITER ;
+
+/*aumenta comentarios despues de insercion*/
+DELIMITER $$
+
+CREATE TRIGGER trg_after_insert_comentarios
+AFTER INSERT ON Comentarios
+FOR EACH ROW
+BEGIN
+    
+    UPDATE Proyectos
+    SET 
+        cantidad_comentarios = cantidad_comentarios + 1
+    WHERE ID_Proyecto = NEW.ID_Proyecto;
+
+END$$
+
+DELIMITER ;
+
+/*elimina comentario despues de eliminacion*/
+DELIMITER $$
+
+CREATE TRIGGER trg_proyecto_delete_comentario
+AFTER DELETE ON comentarios
+FOR EACH ROW
+BEGIN
+    
+    UPDATE Proyectos
+    SET 
+        cantidad_comentarios = cantidad_comentarios - 1
+    WHERE ID_Proyecto = OLD.ID_Proyecto;
+
+END$$
+DELIMITER ;
+
+/*actualiza monto y cantidad despues de actualizar donacion*/
+DELIMITER $$
+
+CREATE TRIGGER trg_donaciones_update
+AFTER UPDATE ON Donaciones
+FOR EACH ROW
+BEGIN
+
+    IF OLD.ID_Proyecto = NEW.ID_Proyecto THEN
+
+        UPDATE Proyectos
+        SET monto_total = monto_total + (NEW.Monto - OLD.Monto)
+        WHERE ID_Proyecto = NEW.ID_Proyecto;
+
+    ELSE
+
+        UPDATE Proyectos
+        SET 
+            monto_total = monto_total - OLD.Monto,
+            cantidad_donaciones = cantidad_donaciones - 1
+        WHERE ID_Proyecto = OLD.ID_Proyecto;
+
+        UPDATE Proyectos
+        SET
+            monto_total = monto_total + NEW.Monto,
+            cantidad_donaciones = cantidad_donaciones + 1
+        WHERE ID_Proyecto = NEW.ID_Proyecto;
+
+    END IF;
+
+END$$
+
+DELIMITER ;
+
+select * from Proyectos;
+select * from donaciones;
+select * from comentarios;
+select * from Usuario;
