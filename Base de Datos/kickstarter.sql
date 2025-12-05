@@ -548,8 +548,3 @@ BEGIN
 END$$
 
 DELIMITER ;
-
-select * from Proyectos;
-select * from donaciones;
-select * from comentarios;
-select * from Usuario;
