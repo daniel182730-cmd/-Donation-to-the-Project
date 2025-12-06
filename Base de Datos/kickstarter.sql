@@ -98,12 +98,9 @@ MODIFY nombre VARCHAR(50) NOT NULL;
 
 ALTER TABLE proyectos
 MODIFY titulo VARCHAR(100) NOT NULL,
-MODIFY descripcion TEXT NOT NULL,
-MODIFY estatus char NOT NULL;
-
+MODIFY descripcion TEXT NOT NULL;
 ALTER TABLE donaciones
 MODIFY Fecha_Donaciones DATETIME NOT NULL,
-MODIFY estatus char NOT NULL,
 MODIFY Monto DECIMAL(10,2) NOT NULL;
 
 ALTER TABLE comentarios
@@ -544,6 +541,45 @@ BEGIN
         WHERE ID_Proyecto = NEW.ID_Proyecto;
 
     END IF;
+
+END$$
+
+DELIMITER ;
+
+-- soft delete de estatus en proyectos
+DELIMITER $$
+
+CREATE TRIGGER soft_delete_proyectos
+BEFORE DELETE ON proyectos
+FOR EACH ROW
+BEGIN
+    
+    UPDATE proyectos
+    SET estatus = 'Eliminado'
+    WHERE ID_Proyecto = OLD.ID_Proyecto;
+
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Soft delete: registro marcado como eliminado';
+
+END$$
+
+DELIMITER ;
+
+
+-- soft delete de estatus en donaciones
+DELIMITER $$
+
+CREATE TRIGGER soft_delete_donaciones
+BEFORE DELETE ON donaciones
+FOR EACH ROW
+BEGIN
+    
+    UPDATE donaciones
+    SET estatus = 'Eliminado'
+    WHERE ID_Donaciones = OLD.ID_Donaciones;
+
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Soft delete: registro marcado como eliminado';
 
 END$$
 
