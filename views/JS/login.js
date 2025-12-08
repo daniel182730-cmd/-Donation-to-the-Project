@@ -1,3 +1,4 @@
+// Esto hace que se alternen los inicios de Seccion
 const iniciarform = document.getElementById("iniciarform")
 const registerform = document.getElementById("registerform")
 
