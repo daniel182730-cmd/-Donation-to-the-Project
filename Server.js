@@ -33,3 +33,5 @@ app.get("/usuarios", (req, res) => {
 
 // servidor
 app.listen(5500,() => console.log("servidor back se aloga en el puerto 3000"));
+
+module.exports = db;
