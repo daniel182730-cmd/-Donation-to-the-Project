@@ -1,7 +1,6 @@
-
-create database kickstarter;
+create database kickstarter
 use kickstarter;
- 
+
 /*==================================================
 TABLAS
 ===================================================*/
