@@ -24,24 +24,17 @@ document.getElementById("form-login").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const nombre = e.target.nombre.value;
-    const contraseña = e.target.contraseña.value;
+    const password = e.target.password.value;
 
-    const response = await fetch("/usuarios/login", {
+    const response = await fetch("/usuario/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, contraseña })
+        body: JSON.stringify({ nombre, password })
     });
 
     const data = await response.json();
     console.log(data);
-
-    if (data.success) {
-        alert("Inicio de sesión correcto");
-    } else {
-        alert("Error: " + data.message);
-    }
 });
-
 
 // ==============================
 // Enviar formulario REGISTRO
@@ -52,20 +45,15 @@ document.getElementById("form-register").addEventListener("submit", async (e) =>
 
     const nombre = e.target.nombre.value;
     const email = e.target.email.value;
-    const contraseña = e.target.contraseña.value;
+    const password = e.target.password.value;
 
-    const response = await fetch("/usuarios/registrar", {
+    const response = await fetch("/usuario/registrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, email, contraseña })
+        body: JSON.stringify({ nombre, email, password })
     });
 
     const data = await response.json();
     console.log(data);
-
-    if (data.success) {
-        alert("Registro exitoso");
-    } else {
-        alert("Error: " + data.message);
-    }
 });
+

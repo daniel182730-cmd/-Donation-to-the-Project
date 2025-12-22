@@ -7,40 +7,42 @@
     <title>Reeva</title>
 </head>
 <body>
+<!-- LOGIN -->
+<div id="iniciarform">
+    <h1>Iniciar Sesión</h1>
 
-    <!--Iniciar Sección-->
-    <div id="iniciarform" class="ver">
-        <h1>Iniciar Sección</h1>
+    <form id="form-login">
+        <h2>Usuario</h2>
+        <input type="text" name="nombre" required>
 
-        <form id="form-login">
-            <h2>Usuario</h2>    
-            <input type="text" name="nombre" placeholder="Usuario">
-            
-            <h2>Contraseña</h2>
-            <input type="text" name="contraseña" placeholder="Contraseña">
-        </form>
+        <h2>Contraseña</h2>
+        <input type="password" name="password" required>
 
-    </div>
+        <button type="submit">Ingresar</button>
+    </form>
+</div>
 
-    <!--Registar Usuario-->
-    <div id="registerform" class="nover">
-        <h1>Registrarse</h1>
+<!-- REGISTRO -->
+<div id="registerform" style="display:none;">
+    <h1>Registrarse</h1>
 
-        <form id="form-register">
-            <h2>Nombre:</h2>
-            <input type="text" name="nombre" placeholder="Nombre">
-            
-            <h2>Email:</h2>
-            <input type="text" name="email" placeholder="Email">
-            
-            <h2>Contraseña:</h2>
-            <input type="text" name="contraseña" placeholder="Contraseña">
-        </form>
-    
-    </div>
+    <form id="form-register">
+        <h2>Nombre</h2>
+        <input type="text" name="nombre" required>
 
-    <button id="btniniciarsaccion">Iniciar Seccion</button>
-    <button id="btnregistrarse">Registrarse</button>
+        <h2>Email</h2>
+        <input type="email" name="email" required>
+
+        <h2>Contraseña</h2>
+        <input type="password" name="password" required>
+
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+
+        <button type="submit">Ingresar</button>
+<button id="btnregistrarse">Registrarse</button>
+
 
 </body>
 
