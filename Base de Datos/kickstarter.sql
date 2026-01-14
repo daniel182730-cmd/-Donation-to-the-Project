@@ -1,7 +1,8 @@
-
-create database kickstarter;
+create database kickstarter
 use kickstarter;
- 
+
+
+select * from Usuario
 /*==================================================
 TABLAS
 ===================================================*/
