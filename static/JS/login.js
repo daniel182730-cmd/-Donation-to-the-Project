@@ -21,3 +21,52 @@ btnIniciar.addEventListener('click', () => {
     iniciarForm.classList.remove('nover');
     iniciarForm.classList.add('ver');
 });
+
+
+// ---------- LOGIN ----------
+document.getElementById('form-login').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        window.location.href = result.redirect;
+    } else {
+        alert(result.message);
+    }
+});
+
+
+// ---------- REGISTER ----------
+document.getElementById('form-register').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        window.location.href = result.redirect;
+    }
+});
+
