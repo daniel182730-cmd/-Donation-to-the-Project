@@ -1,18 +1,16 @@
-import pyodbc
+import mysql.connector
 
-# Database connection function
 def get_db_connection():
-    server = 'localhost'
-    database = 'kickstarter'
-    username = 'root'
-    password = 'S@lmon182730'
-    
     try:
-        conn = pyodbc.connect(
-            f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+        conn = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="S@lmon182730",
+            database="kickstarter",
+            autocommit=True
         )
-        print("Conexión exitosa a SQL Server")
+        print("✅ Conectado a MySQL")
         return conn
-    except Exception as e:
-        print(f"Error: {e}")
+    except mysql.connector.Error as e:
+        print("Error MySQL:", e)
         return None
