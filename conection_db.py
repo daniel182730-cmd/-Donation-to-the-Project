@@ -9,7 +9,7 @@ def get_db_connection():
             database="kickstarter",
             autocommit=True
         )
-        print("✅ Conectado a MySQL")
+        print("Conectado a MySQL")
         return conn
     except mysql.connector.Error as e:
         print("Error MySQL:", e)

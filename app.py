@@ -11,11 +11,15 @@ app.register_blueprint(auth)
 
 @app.route("/")
 def login():
-    return render_template("login.html")
+    return render_template("Login.html")
 
 @app.route("/Reeva")
 def reeva():
     return render_template("Reeva.html")
+
+@app.route("/Form")
+def Form():
+    return render_template("Formulario.html")
 
 if __name__ == "__main__":
     webbrowser.open("http://127.0.0.1:5000/")
