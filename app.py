@@ -4,7 +4,7 @@ from controllers.login_controllers import auth
 
 app = Flask(__name__)
 
-app.secret_key = "reeva_secret_key_123"  # 🔥 ESTA LÍNEA
+app.secret_key = "reeva_secret_key_123"  
 
 
 app.register_blueprint(auth)
