@@ -7,8 +7,9 @@
 La semilla representa el proyecto, y por lo tanto, el color representativo de nuestra pagina es el verde, que representa la naturaleza, el optimismo y el crecimiento. :shipit:
 
 ## Como utilizarla
->Aca pueden haber imagenes explicando como usarla, o no se :rage3:
-Luego de haber ingresado a la pagina y de haber completado el formulario de inicio de sesion, podran explorar los diferentes apartados que ofrece la web. / ES POSIBLE QUELO DE ABAJE LO SUBA A LOS DETALLES. ESA CLASE DE REDACCION QUE TOME NO ME SIRVIOOOO :rage3:
+>Aca pueden haber imagenes explicando como usarla, o no se / ES POSIBLE QUE LO DE ABAJE LO SUBA A LOS DETALLES. ESA CLASE DE REDACCION QUE TOME NO ME SIRVIOOOO :rage3:
+
+Luego de haber ingresado a la pagina y de haber completado el formulario de inicio de sesion, podran explorar los diferentes apartados que ofrece la web.
 Entre ellos estan:
 - **Inicio:** Aca pueden explorar y conocer los diferentes proyectos que se encuentran publicados.
 - **Perfil:** En este espacio se encontraran sus informaciones personales, como por ejemplo; Nombre, imagen y descripcion. Desde aqui se puede ingresar al apartado de *crear proyecto*.
